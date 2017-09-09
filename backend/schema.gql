@@ -1,0 +1,28 @@
+input ProjectFilter {
+    id: String
+    name: String
+}
+
+type Query {
+    projects(filter: ProjectFilter): [Project]!
+    project(id: ID!): Project
+    technologies: [Technology]!
+    technology(id: ID!): Technology
+}
+
+type Project {
+    id: String!
+    name: String
+    description: String
+    technologies: [Technology]
+}
+
+type Technology {
+    id: String!
+    name: String
+    icon: String
+}
+
+schema {
+    query: Query
+}
