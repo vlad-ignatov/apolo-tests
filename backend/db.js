@@ -12,22 +12,10 @@ if (process.env.LOG_SQL) {
     });
 }
 
-module.exports = {
-    all(sql, ...params) {
+function promise(method) {
+    return function(...params) {
         return new Promise((resolve, reject) => {
-            DB.all(sql, ...params, (err, rows) => {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    resolve(rows);
-                }
-            });
-        });
-    },
-    get(sql, ...params) {
-        return new Promise((resolve, reject) => {
-            DB.get(sql, ...params, (err, result) => {
+            DB[method](...params, (err, result) => {
                 if (err) {
                     reject(err);
                 }
@@ -36,5 +24,11 @@ module.exports = {
                 }
             });
         });
-    }
+    };
+}
+
+module.exports = {
+    promise,
+    all: promise("all"),
+    get: promise("get")
 }

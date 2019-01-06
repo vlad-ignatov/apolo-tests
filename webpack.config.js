@@ -116,6 +116,7 @@ if (NODE_ENV == "development") {
         overlay    : true,
         quiet      : false,
         // inline     : true,
+        historyApiFallback: true,
 
         // Tell the server to watch the files served by the
         // devServer.contentBase option. File changes will trigger a full

@@ -1,0 +1,55 @@
+.drop-zone {
+    position: relative;
+    z-index: 2;
+    border-radius: 3px;
+
+    &.drag-over {
+        border-color: rgba(0, 100, 0, 1);
+        box-shadow: 0 0 0 5px rgba(0, 150, 0, 0.3);
+    }
+}
+
+.drop-zone-file {
+    display: flex;
+    flex-flow: row;
+    padding: 20px;
+
+    .image-col {
+        flex: 1 1 200px;
+        margin-right: 20px;
+        background-color: rgba(127, 127, 127, 0.1);
+        background: rgba(127, 127, 127, 0.1) linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1)) center no-repeat;
+        background-size: contain;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+        border-radius: 3px;
+        outline: 1px solid rgba(255, 255, 255, 0.2);
+        outline-offset: -2px;
+    }
+
+    .table-col {
+        flex: 3 1 600px;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    td, th {
+        border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+        &:first-child {
+            padding-right: 10px;
+
+            + td {
+                width: 100%;
+            }
+        }
+    }
+    td:last-child {
+        min-width: 2rem;
+    }
+    tr:last-child {
+        td, th {
+            border-bottom: none;
+        }
+    }
+}

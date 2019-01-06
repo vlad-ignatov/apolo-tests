@@ -1,8 +1,13 @@
 import * as React  from "react"
 import NavBar      from "../NavBar"
 import ProjectList from "../ProjectList"
-import "./app.less"
-
+import ProjectView from "../ProjectView"
+import ProjectEdit from "../ProjectEdit"
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from "react-router-dom"
 import {
     ApolloClient,
     graphql,
@@ -10,9 +15,10 @@ import {
     ApolloProvider,
     createNetworkInterface
 } from "react-apollo"
+import "./app.less"
 
-const networkInterface = createNetworkInterface({ 
-    uri: 'http://localhost:4000/graphql',
+const networkInterface = createNetworkInterface({
+    uri: "http://localhost:4000/graphql",
   });
 
 const apolloClient = new ApolloClient({
@@ -21,48 +27,25 @@ const apolloClient = new ApolloClient({
 
 
 export default class App extends React.Component<any, any> {
-    render() {
+    public render() {
         return (
-            <ApolloProvider client={apolloClient}>
-                <div>
-                    <NavBar/>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-4 border-right">
-                                <div className="list-group">
-                                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
-                                        <div className="d-flex w-100 justify-content-between">
-                                            <h5 className="mb-1">List group item heading</h5>
-                                            <small>3 days ago</small>
-                                        </div>
-                                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                        <small>Donec id elit non mi porta.</small>
-                                    </a>
-                                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div className="d-flex w-100 justify-content-between">
-                                            <h5 className="mb-1">List group item heading</h5>
-                                            <small className="text-muted">3 days ago</small>
-                                        </div>
-                                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                        <small className="text-muted">Donec id elit non mi porta.</small>
-                                    </a>
-                                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div className="d-flex w-100 justify-content-between">
-                                            <h5 className="mb-1">List group item heading</h5>
-                                            <small className="text-muted">3 days ago</small>
-                                        </div>
-                                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                        <small className="text-muted">Donec id elit non mi porta.</small>
-                                    </a>
+            <Router>
+                <ApolloProvider client={apolloClient}>
+                    <div>
+                        <NavBar/>
+                        <div className="container">
+                            <div className="row card-columns">
+                                <div className="col-12">
+                                    <Route exact path="/" component={ProjectList}/>
+                                    <Route exact path="/projects" component={ProjectList}/>
+                                    <Route exact path="/projects/:id" component={ProjectView}/>
+                                    <Route path="/projects/:id/edit" component={ProjectEdit}/>
                                 </div>
-                            </div>
-                            <div className="col-8">
-                                <ProjectList/>
                             </div>
                         </div>
                     </div>
-                </div>
-            </ApolloProvider>
+                </ApolloProvider>
+            </Router>
         );
     }
 }

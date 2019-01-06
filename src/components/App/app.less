@@ -4,3 +4,55 @@ body {
 .app {
     color: #900;
 }
+
+.card-columns .card {
+    margin-bottom: 1.25rem;
+}
+
+  // Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+// @media (min-width: 1200px) { ... }
+
+input[type="file"] {
+    height: auto;
+    font-size: initial;
+    line-height: normal;
+    padding: 3px 12px 3px 3px;
+    &:focus {
+        outline: none;
+    }
+}
+::-webkit-file-upload-button {
+    vertical-align: top;
+    line-height: inherit;
+    -webkit-appearance: none;
+    display: block;
+    border: none;
+    border-radius: 2px;
+    background: #EEE;
+    text-shadow: 0 1px 0 #FFF;
+    padding: 0.25ex 1ex;
+    background-image: linear-gradient(#EEE, #DDD);
+    box-shadow: 0 0 1px 0 #FFF inset, 0 0 0 1px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}

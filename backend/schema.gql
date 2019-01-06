@@ -3,11 +3,30 @@ input ProjectFilter {
     name: String
 }
 
+# The properties that can be submitted while creating/updating a project
+input ProjectInput {
+    id: String
+    name: String
+    description: String
+    technologies: [TechnologyInput],
+    images: [String]
+}
+
+# The properties that can be submitted while creating/updating a technology
+input TechnologyInput {
+    id: String
+    name: String
+}
+
 type Query {
     projects(filter: ProjectFilter): [Project]!
     project(id: ID!): Project
     technologies: [Technology]!
     technology(id: ID!): Technology
+}
+
+type Mutation {
+    saveProject(project: ProjectInput): Project
 }
 
 type Project {
@@ -24,5 +43,6 @@ type Technology {
 }
 
 schema {
-    query: Query
+    query: Query,
+    mutation: Mutation
 }
